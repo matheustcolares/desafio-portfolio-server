@@ -25,7 +25,7 @@ public class Discipline {
 	private String description;
 	
 	@OneToMany
-	@JoinTable(name = "Course")
+	@JoinTable(name = "CourseRepository")
 	@JoinColumn(name = "fk_course",referencedColumnName = "id")
 	private int course;
 	
