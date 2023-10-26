@@ -1,15 +1,20 @@
 package com.desafioportfolio.desafioportfolio.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name="Discipline")
 public class Course {
 	
 	@Id
 	@GeneratedValue(strategy =GenerationType.SEQUENCE )
-	private int id;
+	private Long id;
 	
 	@Column(name = "Name")
 	private String name;
@@ -17,11 +22,11 @@ public class Course {
 	@Column(name = "Amount_Semester")
 	private int amount_semester;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

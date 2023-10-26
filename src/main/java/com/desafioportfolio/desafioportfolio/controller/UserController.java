@@ -31,7 +31,7 @@ public class UserController {
 	public ResponseEntity<User> update(@PathVariable("id") long id) {
 		return new ResponseEntity<>(repository.findById(id).get(),HttpStatus.OK);
 	}
-	@PostMapping(value ="/save")
+	@PostMapping(value ="/save",consumes = "application/json",produces = "applications/json")
 	public ResponseEntity<User> save(@RequestBody User user) {
 		return new ResponseEntity<>(repository.save(user),HttpStatus.OK);
 	}
