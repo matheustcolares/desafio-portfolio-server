@@ -2,6 +2,8 @@ package com.desafioportfolio.desafioportfolio.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +33,8 @@ public class UserController {
 	public ResponseEntity<User> update(@PathVariable("id") long id) {
 		return new ResponseEntity<>(repository.findById(id).get(),HttpStatus.OK);
 	}
-	@PostMapping(value ="/save",consumes = "application/json",produces = "applications/json")
+	@Transactional
+	@PostMapping(value ="/save",consumes = "*/*",produces = "*/*")
 	public ResponseEntity<User> save(@RequestBody User user) {
 		return new ResponseEntity<>(repository.save(user),HttpStatus.OK);
 	}
