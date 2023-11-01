@@ -1,22 +1,22 @@
 package com.desafioportfolio.desafioportfolio.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import org.hibernate.annotations.Table;
-
-
-@Table(appliesTo = "Discipline")
+@Entity
+@Table(name = "Discipline")
 public class Discipline {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private int id;
+	private Long id;
 	
 	@Column(name="Name")
 	private String name;
@@ -24,11 +24,18 @@ public class Discipline {
 	@Column(name="Description")
 	private String description;
 	
-	@OneToMany
 	@JoinTable(name = "Course")
 	@JoinColumn(name = "fk_course",referencedColumnName = "id")
 	private int course;
 	
+	public int getSemester() {
+		return semester;
+	}
+
+	public void setSemester(int semester) {
+		this.semester = semester;
+	}
+
 	@Column(name = "Semester")
 	private int semester;
 
@@ -40,11 +47,11 @@ public class Discipline {
 		this.name = name;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

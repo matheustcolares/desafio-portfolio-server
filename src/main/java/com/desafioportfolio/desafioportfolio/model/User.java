@@ -17,11 +17,15 @@ public class User {
 	@Id
 	@GeneratedValue
 	@Column(name = "Id")
-	private int id;
+	private Long id;
 	
 	@Column(name = "Name")
 	private String name;
 	
+	@Column(name = "Username")
+	private String username;
+	
+
 	@Column(name = "Registration")
 	private int registration;
 	
@@ -32,11 +36,30 @@ public class User {
 	@Column(name = "Role")
 	private RoleEnum role;
 
-	public int getId() {
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public User() {}
+	
+	public User(Long id, String name, int registration, String password, RoleEnum role) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.registration = registration;
+		this.password = password;
+		this.role = role;
+	}
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
