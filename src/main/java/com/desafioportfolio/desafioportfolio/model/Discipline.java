@@ -24,7 +24,7 @@ public class Discipline {
 	@Column(name="Description")
 	private String description;
 	
-	@JoinTable(name = "CourseRepository")
+	@JoinTable(name = "Course")
 	@JoinColumn(name = "fk_course",referencedColumnName = "id")
 	private int course;
 	
