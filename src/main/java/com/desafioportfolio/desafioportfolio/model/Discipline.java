@@ -28,6 +28,14 @@ public class Discipline {
 	@JoinColumn(name = "fk_course",referencedColumnName = "id")
 	private int course;
 	
+	public int getSemester() {
+		return semester;
+	}
+
+	public void setSemester(int semester) {
+		this.semester = semester;
+	}
+
 	@Column(name = "Semester")
 	private int semester;
 
