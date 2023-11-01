@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.desafioportfolio.desafioportfolio.model.Course;
+import com.desafioportfolio.desafioportfolio.model.User;
 import com.desafioportfolio.desafioportfolio.repository.CourseRepository;
 
 @RestController
@@ -36,8 +38,13 @@ public class CourseController {
 		return new ResponseEntity<>(repository.findById(id).get(),HttpStatus.OK);
 	}
 	@Transactional
-	@PostMapping(value ="/save",consumes = "*/*",produces = "*/*")
+	@PostMapping(value ="/save",consumes = "application/json",produces = "application/json")
 	public ResponseEntity<Course> save(@RequestBody Course course) {
+		return new ResponseEntity<>(repository.save(course),HttpStatus.OK);
+	}
+	@Transactional
+	@PutMapping(value ="/update",consumes = "application/json",produces = "application/json")
+	public ResponseEntity<Course> update(@RequestBody Course course) {
 		return new ResponseEntity<>(repository.save(course),HttpStatus.OK);
 	}
 	@DeleteMapping(value ="/delete/{id}")

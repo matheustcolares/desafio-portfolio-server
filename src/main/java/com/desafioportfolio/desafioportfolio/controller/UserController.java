@@ -1,6 +1,7 @@
 package com.desafioportfolio.desafioportfolio.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.desafioportfolio.desafioportfolio.model.User;
 import com.desafioportfolio.desafioportfolio.repository.UserRepository;
 import com.desafioportfolio.desafioportfolio.security.JwtTokenProvider;
+import com.desafioportfolio.desafioportfolio.util.RoleEnum;
+
+import io.jsonwebtoken.lang.Arrays;
 
 @RestController
 @RequestMapping("/user")
@@ -44,6 +49,11 @@ public class UserController {
 	public ResponseEntity<User> save(@RequestBody User user) {
 		return new ResponseEntity<>(repository.save(user),HttpStatus.OK);
 	}
+	@Transactional
+	@PutMapping(value ="/update",consumes = "application/json",produces = "application/json")
+	public ResponseEntity<User> update(@RequestBody User user) {
+		return new ResponseEntity<>(repository.save(user),HttpStatus.OK);
+	}
 	@DeleteMapping(value ="/delete/{id}")
 	public ResponseEntity<User> delete(@PathVariable("id") long id) {
 		try {
@@ -58,5 +68,10 @@ public class UserController {
 	@GetMapping(value="/getByUsername/{username}",produces = "application/json")
 	public ResponseEntity<User> getByUsername(@PathVariable("username") String username){
 		return new ResponseEntity<>(repository.findByUsername(username),HttpStatus.OK);
+	}
+	@GetMapping(value="/getRoles")
+	public ResponseEntity<List<RoleEnum>> getRoles(){
+		List<RoleEnum> result=Arrays.asList(RoleEnum.values());
+		return new ResponseEntity<>(result,HttpStatus.OK);
 	}
 }
